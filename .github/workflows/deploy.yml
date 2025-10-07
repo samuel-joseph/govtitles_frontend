@@ -16,23 +16,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.19.0" # 👈 use your actual Node version
+          node-version: 20
 
       - name: Install dependencies
         run: npm ci
 
       - name: Inject environment file
         run: |
-          mkdir -p src/environments
           echo "export const environment = {
             production: true,
             apiUrl: '${{ secrets.API_URL }}'
           };" > src/environments/environment.prod.ts
 
       - name: Build Angular app
-        run: |
-          npm install -g @angular/cli
-          ng build --configuration production --base-href "https://samuel-joseph.github.io/govtitles_frontend/"
+        run: npm run build -- --configuration production --base-href "/govtitles_frontend/"
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/govtitles
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist/govtitles_frontend
