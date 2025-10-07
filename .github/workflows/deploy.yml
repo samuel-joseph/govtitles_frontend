@@ -16,23 +16,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "24.5.0"
+          node-version: "18.17.1" # 👈 use your actual Node version
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Clean Angular cache
-        run: npx ng cache clean
-
       - name: Inject environment file
         run: |
+          mkdir -p src/environments
           echo "export const environment = {
             production: true,
             apiUrl: '${{ secrets.API_URL }}'
           };" > src/environments/environment.prod.ts
 
       - name: Build Angular app
-        run: npx ng build --configuration production --base-href "https://samuel-joseph.github.io/govtitles_frontend/"
+        run: |
+          npm install -g @angular/cli
+          ng build --configuration production --base-href "https://samuel-joseph.github.io/govtitles_frontend/"
 
       - name: Deploy to GitHub Pages
         run: npx angular-cli-ghpages --dir=dist/govtitles
