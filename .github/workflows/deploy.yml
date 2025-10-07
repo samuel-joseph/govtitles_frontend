@@ -1,0 +1,35 @@
+name: Deploy Angular App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Inject environment file
+        run: |
+          echo "export const environment = {
+            production: true,
+            apiUrl: '${{ secrets.API_URL }}'
+          };" > src/environments/environment.prod.ts
+
+      - name: Build Angular app
+        run: ng build --configuration production --base-href "https://samuel-joseph.github.io/govtitles_frontend/"
+
+      - name: Deploy to GitHub Pages
+        run: npx angular-cli-ghpages --dir=dist/govtitles
