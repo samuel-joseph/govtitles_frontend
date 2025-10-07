@@ -1,0 +1,25 @@
+<div class="chart-container" *ngIf="chartData">
+
+  <canvas baseChart
+    [data]="chartData"
+    [type]="chartType">
+  </canvas>
+
+  <div class="extra-stats">
+    <p><strong>Average Sentence Length:</strong> {{ chartData.datasets[0].data[1] }}</p>
+    <div *ngIf="historicalChanges">
+    <h3>Historical Word Count Changes</h3>
+    <div class="extra-stats">
+      <div *ngFor="let key of (historicalChanges | keyvalue)">
+        <p><strong>{{ key.key }}:</strong> {{ key.value }}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div *ngIf="!chartData">
+  <p>Loading chart...</p>
+</div>
+
+

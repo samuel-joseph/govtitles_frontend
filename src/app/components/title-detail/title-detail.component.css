@@ -1,0 +1,34 @@
+title-detail.component.css
+
+.chart-container {
+  max-width: 800px;
+  margin: 0 auto; 
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.extra-stats {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #f7f7f7; 
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.extra-stats {
+  margin-top: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.extra-stats p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #333;
+}

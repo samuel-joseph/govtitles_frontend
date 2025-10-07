@@ -1,0 +1,22 @@
+.titles-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
+}
+.title-card {
+  background: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  width: 200px;
+  transition: background 0.2s;
+}
+.title-card:hover {
+  background: #cce5ff;
+}
+
+
+

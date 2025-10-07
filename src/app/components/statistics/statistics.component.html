@@ -1,0 +1,25 @@
+<div *ngIf="loading">
+  <p>Loading chart...</p>
+</div>
+
+<div *ngIf="!loading && chartData">
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="chartData"
+      [type]="chartType">
+    </canvas>
+  </div>
+
+  <button class="btn-toggle" (click)="toggleChecksums()">
+    {{ showChecksums ? 'Hide Checksums' : 'Show Checksums' }}
+  </button>
+
+  <div class="checksums" *ngIf="showChecksums">
+    <h3>Checksums</h3>
+    <ul>
+      <li *ngFor="let item of checksums">
+        {{ item.name }} : {{ item.checksum }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="titles-grid">
+  <div
+    class="title-card"
+    *ngFor="let title of titles"
+    (click)="goToDetail(title.number)"
+  >
+    {{ title.name }}
+  </div>
+</div>
